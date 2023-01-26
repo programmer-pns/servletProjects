@@ -1,3 +1,0 @@
-eclipse.preferences.version=1
-module-start-timeout=300000
-runtimes=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<runtimes>\r\n  <runtime id\="Apache Tomcat v9.0" location\="P\:/Tomcat9.x" name\="Apache Tomcat v9.0" runtime-type-id\="org.eclipse.jst.server.tomcat.runtime.90" timestamp\="0"/>\r\n  <runtime PROPERTY_EXEC_ENVIRONMENT\="JavaSE-11" id\="WildFly 27.0 Runtime" location\="P\:/wildfly-27.0.1.Final" name\="WildFly 27.0 Runtime" org.jboss.ide.eclipse.as.core.runtime.configurationName\="" org.jboss.ide.eclipse.as.core.server.internal.v7.BASE_DIRECTORY\="standalone" org.jboss.ide.eclipse.as.core.server.internal.v7.CONFIG_FILE\="standalone.xml" runtime-type-id\="org.jboss.ide.eclipse.as.runtime.wildfly.270" timestamp\="0"/>\r\n</runtimes>\r\n

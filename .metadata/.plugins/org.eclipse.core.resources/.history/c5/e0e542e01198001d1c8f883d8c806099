@@ -1,7 +1,0 @@
-package com.pns.servlet;
-
-import javax.servlet.http.HttpServlet;
-
-public class DownloadEmployeeData extends HttpServlet {
-
-}
