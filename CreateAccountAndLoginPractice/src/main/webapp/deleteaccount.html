@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Delete Account Page</title>
+</head>
+<body>
+<form action="deleteaccounturl" name="frm" method="post" onsubmit="return checkConfirm()">
+<table style="text-align:center">
+<caption>Delete Account</caption>
+<tr>
+<th>User Name</th>
+<td><input type="text" name="uname"></td>
+</tr>
+<tr>
+<th>PassWord</th>
+<td><input type="text" name="upass1" id="pass"></td>
+</tr>
+<tr>
+<th>Confirm PassWord</th>
+<td><input type="text" name="upass2" id="cnfpass"></td>
+</tr>
+<tr>
+<th></th>
+<td><input type="submit" name="submit" value="Delete Account"></td>
+</tr>
+
+</table>
+</form>
+</body>
+<script type="text/javascript">
+function checkConfirm(){
+	if(document.getElementById("pass").value==document.getElementById("cnfpass").value){
+		window.alert("You are about to delete your account. Are you sure to continue?");
+		frm.submit();
+	}
+	else{
+		window.alert("Password and Confirm password must match");
+		return false;
+	}
+	
+}
+</script>
+</html>

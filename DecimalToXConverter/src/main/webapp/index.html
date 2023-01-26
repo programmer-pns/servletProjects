@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Binary To X Converter</title>
+</head>
+<body>
+<h1 style="color:green; text-align:center">Binary to any type converter</h1>
+
+<form action="decimaltoxconverterurl" name="frm">
+Enter a Decimal number: <input type="text" name="number"><br>
+<p>Select any type from below</p><br>
+<select name="option" onchange="send()">
+<option value="-1" selected>-SELECT_OPTION-</option>
+<option value="1">Binary</option>
+<option value="2">HexaDecimal</option>
+</select>
+</form>
+</body>
+<script type="text/javascript">
+function send() {
+	frm.submit();
+}
+</script>
+</html>

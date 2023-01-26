@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<servlet>
+<servlet-name>userlogin</servlet-name>
+<servlet-class>com.pns.servlet.UserLogin</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>userlogin</servlet-name>
+<url-pattern>/loginurl</url-pattern>
+</servlet-mapping>
+</web-app>

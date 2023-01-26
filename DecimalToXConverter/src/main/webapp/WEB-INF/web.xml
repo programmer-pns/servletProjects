@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+</welcome-file-list>
+<servlet>
+<servlet-name>binarytox</servlet-name>
+<servlet-class>com.pns.servlet.DecimalToXConverter</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>binarytox</servlet-name>
+<url-pattern>/decimaltoxconverterurl</url-pattern>
+</servlet-mapping>
+
+</web-app>

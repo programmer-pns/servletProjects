@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+</welcome-file-list>
+<!-- Login page servlet configuration -->
+<servlet>
+<servlet-name>loginservlet</servlet-name>
+<servlet-class>com.pns.servlet.LoginServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>loginservlet</servlet-name>
+<url-pattern>/loginurl</url-pattern>
+</servlet-mapping>
+
+<!-- registration page servlet configuration -->
+<servlet>
+<servlet-name>registerservlet</servlet-name>
+<servlet-class>com.pns.servlet.RegisterServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>registerservlet</servlet-name>
+<url-pattern>/registerurl</url-pattern>
+</servlet-mapping>
+
+<!-- delete page servlet configuration -->
+<servlet>
+<servlet-name>deleteaccountservlet</servlet-name>
+<servlet-class>com.pns.servlet.DeleteAccountServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>deleteaccountservlet</servlet-name>
+<url-pattern>/deleteaccounturl</url-pattern>
+</servlet-mapping>
+</web-app>

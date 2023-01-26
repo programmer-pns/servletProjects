@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Get Country Capital</title>
+</head>
+<body>
+<h1 style="color:red; text-align:center">Get Capitals of Country</h1>
+<form action="getcapitalurl" name ="frm" method="get">
+<select name="country" onchange="show()">
+<option value="-1" selected>-select_option-</option>
+<option value="0" >India</option>
+<option value="1" >Pakistan</option>
+<option value="2" >USA</option>
+<option value="3" >China</option>
+</select>
+</form>
+</body>
+
+<script type="text/javascript">
+function show(){
+	frm.submit();
+}
+</script>
+</html>

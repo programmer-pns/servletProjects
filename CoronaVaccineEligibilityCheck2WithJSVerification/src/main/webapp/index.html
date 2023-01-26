@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Corona Vaccine Eligibility Check</title>
+</head>
+<body>
+<!--The requirements are 
+1. no field should be left empty
+2. address length should be at least 10
+3. age must be a numeric value
+4. age should be between 1 through 125
+-->
+<form action="covidcheckurl" method="GET"  onsubmit="return checkvalidness(this)">
+Enter your name: <input type="text" name="name"><span id="nameid"></span><br>
+Enter your location: <input type="text" name="loc"><span id="locationid"></span><br>
+Enter your age: <input type="text" name="age"><span id="ageid"></span><br>
+<input type="submit" value="Check Eligibility">
+</form>
+</body>
+<script type="text/javascript">
+function checkvalidness(){
+	var name = document.getElementById();
+}
+</script>
+</html>

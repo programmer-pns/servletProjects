@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/JDBC/.jar files/ojdbc8-21.1.0.0.jar"/>
+	<classpathentry kind="lib" path="P:/Tomcat9.x/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/Servlet/02-Servlets _Notes/.jar files/uploadbean1.9/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/Servlet/02-Servlets _Notes/.jar files/uploadbean1.9/WEB-INF/lib/fileupload.jar"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/Servlet/02-Servlets _Notes/.jar files/uploadbean1.9/WEB-INF/lib/struts.jar"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/Servlet/02-Servlets _Notes/.jar files/uploadbean1.9/WEB-INF/lib/uploadbean.jar"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/JDBC/.jar files/commons-io-2.11.0.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

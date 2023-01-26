@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+<servlet>
+	<servlet-name>htmlapp</servlet-name>
+	<servlet-class>com.pns.servlet.HtmlServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>htmlapp</servlet-name>
+	<url-pattern>/htmlurl</url-pattern>
+</servlet-mapping>
+</web-app>

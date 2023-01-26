@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+<welcome-file-list>
+<welcome-file>home.html</welcome-file>
+</welcome-file-list>
+
+<servlet>
+<servlet-name>country</servlet-name>
+<servlet-class>com.pns.servlet.GetCountryCapitals</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>country</servlet-name>
+<url-pattern>/getcapitalurl</url-pattern>
+</servlet-mapping>
+</web-app>
