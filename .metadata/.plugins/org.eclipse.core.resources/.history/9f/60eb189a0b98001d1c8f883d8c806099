@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="EmplyeeDetails.html">Register Employee</a><br><br><br>
+<a href="downloademployeeurl">Get Employee Data</a>
+</body>
+</html>

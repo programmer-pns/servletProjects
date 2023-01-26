@@ -1,0 +1,23 @@
+package com.pns.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("downloademployeedataurl")
+public class DownloadEmployeeData extends HttpServlet {
+	private static final String DOWNLOAD_PHOTO_QUERY = "SELECT PHOTO_PATH FROM UPLOAD_EMPLOYEE WHERE ENO=?";
+	private static final String DOWNLOAD_RESUME_QUERY = "SELECT RESUME_PATH FROM UPLOAD_EMPLOYEE WHERE ENO=?";
+	@Override
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
+}
