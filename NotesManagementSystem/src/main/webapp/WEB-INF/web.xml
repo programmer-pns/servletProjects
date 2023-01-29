@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+</welcome-file-list>
+
+<context-param>
+<param-name>driverclass</param-name>
+<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+</context-param>
+<context-param>
+<param-name>url</param-name>
+<param-value>jdbc:oracle:thin:@localhost:1521:orcl</param-value>
+</context-param>
+<context-param>
+<param-name>dbuser</param-name>
+<param-value>SYSTEM</param-value>
+</context-param>
+<context-param>
+<param-name>dbpwd</param-name>
+<param-value>TIGER</param-value>
+</context-param>
+</web-app>

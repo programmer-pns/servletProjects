@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notebook Management System</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form action="loginurl" class="sign-in-form" method="post">
+            <h2 class="title">Sign In</h2>
+            <div class="input-field">
+              <ion-icon name="person-outline"></ion-icon>
+              <input type="text" placeholder="Username" name ="username"/>
+            </div>
+            <div class="input-field">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input type="password" name="password" placeholder="Password"/>
+              <span>
+                <ion-icon name="eye-outline" id="eye1" onclick="showPassword()"></ion-icon>
+                <ion-icon name="eye-off-outline" id="eyeoff1" onclick="showPassword()" style="display: none;"></ion-icon>
+              </span>
+            </div>
+            <input type="submit" value="Login" class="btn solid" />
+
+            <p class="social-text">Visit our social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-google"></ion-icon>
+              </a>
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </div>
+          </form>
+
+          <form action="registerurl" class="sign-up-form" method="post">
+            <h2 class="title">Sign Up</h2>
+            <div class="input-field">
+              <ion-icon name="person-outline"></ion-icon>
+              <input type="text" name="username" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <ion-icon name="mail-outline"></ion-icon>
+              <input type="email" placeholder="Email" name="email"/>
+            </div>
+            <div class="input-field">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <input type="password" name ="password2" placeholder="Password" />
+              <span>
+                <ion-icon name="eye-outline" id="eye2" onclick="showPassword2()"></ion-icon>
+                <ion-icon name="eye-off-outline" id="eyeoff2" onclick="showPassword2()" style="display: none;"></ion-icon>
+              </span>
+            </div>
+            <input type="submit" value="Sign Up" class="btn solid" />
+
+            <p class="social-text">Visit our social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-google"></ion-icon>
+              </a>
+              <a href="#" class="social-icon">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New here?</h3>
+            <p>
+              Register, upload and leave. The safety of your notes is now our responsibility.
+            </p>
+            <button class="btn transparent" id="sign-up-btn">Sign Up</button>
+          </div>
+          <img src="./img/log.svg" class="image" alt="" />
+        </div>
+
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>One of us?</h3>
+            <p>
+              Sign in to get all the new features on our platform.
+            </p>
+            <button class="btn transparent" id="sign-in-btn">Sign In</button>
+          </div>
+          <img src="./img/register.svg" class="image" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
