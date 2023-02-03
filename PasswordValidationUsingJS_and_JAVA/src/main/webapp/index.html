@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Validation</title>
+    <style>
+        #error_table td{
+            text-decoration: none;
+            font-size: 20px;
+            color: red;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        } 
+        #error_table h2{
+            color: black;
+        } 
+    </style>
+</head>
+<body bgcolor="cyan">
+    <main>
+       <h1 align="center">Form Validations With JavaScript</h1>
+       <form action="passwordvalidationurl" method="post" id="pass_frm">
+        <table align="center" border="0" WIDTH="30%">
+            <tr>
+                <td><span style="font-size: 25px;">Password:</span></td>
+                <td><input type="text" name="pass1" spellcheck="false" style="font-size: 20px;" oninput="return validatePass()" onblur="validatePass()"></td>
+            </tr>
+            <tr>
+                <td><span style="font-size: 25px;">Confirm Password:</span></td>
+                <td><input type="text" name="pass2" spellcheck="false" style="font-size: 20px;" oninput="return validateCnfrmPass()"  onblur="validateCnfrmPass()" readonly></td>
+            </tr>
+        </table>
+       </form>
+       <br><!-- break -->
+       <button type="submit" id="submit_btn" style="position: relative; left: 50%; font-size: 20px;" onmouseover="return animation()" onclick="pass_frm.submit()">SUBMIT</button>
+       <table align="center" id="error_table">
+        <tr>
+            <td><h2 id="error_heading">Password should: </h2></td>
+        </tr>
+        <tr>
+            <td id="number">contain atleast one number</td>
+        </tr>
+        <tr>
+            <td id="lower">contain atleast one lowercase alphabet</td>
+        </tr>
+        <tr>
+            <td id="upper">contain atleast one uppercase alphabet</td>
+        </tr>
+        <tr>
+            <td id="special_char">contain atleast one special character</td>
+        </tr>
+        <tr>
+            <td id="nospace">not contain any space</td>
+        </tr>
+        <tr>
+            <td id="len">be atleast 8 characters long</td>
+        </tr>
+       </table>
+    </main>
+</body>
+
+<!-- *********************************************FORM VALIDATION SCRIPT**************************************** -->
+<script>
+    let boolean_flag = false;
+    function validatePass(){
+        let pass= document.querySelector('[name="pass1"]'); //used to selectElementByName()
+        let passvalue= document.querySelector('[name="pass1"]').value; //used to get the value of elementByName()
+        let flag = true;
+        //to check presence of numbers
+        if(passvalue.match(/[0-9]/)){
+            // document.getElementById('number').style.color='green';
+            //----------OR------------
+            number.style.color='green';
+        }
+        else{
+            number.style.color='red';
+            flag=false;
+        }
+        //to check presence of lowercase letters
+        if(passvalue.match(/[a-z]/)){
+            lower.style.color='green';
+        }
+        else{
+            lower.style.color='red';
+            flag=false;
+        }
+        // to check the presence of uppercase letters
+        if(passvalue.match(/[A-Z]/)){
+            upper.style.color='green';
+        }
+        else{
+            upper.style.color='red';
+            flag=false;
+        }
+        //to check the presence of special characters
+        if(passvalue.match(/[\.\@\$\&\!\<\>\(\)\^]/)){
+            special_char.style.color='green';
+        }
+        else{
+            special_char.style.color='red';
+            flag=false;
+        }
+        // to check if there is any space
+        if(passvalue.match(/\s/)){
+            nospace.style.color='red';
+            flag=false;
+        }
+        else{
+            nospace.style.color='green';
+        }
+        //to check if the length is atleast 8 characters
+        if(passvalue.length >= 8){
+            len.style.color='green';
+        }
+        else{
+            len.style.color='red';
+            flag=false;
+        }
+        //to set confirm password editable
+        if(flag){
+            document.querySelector('[name="pass2"]').removeAttribute('readonly');
+            validateCnfrmPass();
+        }
+        else{
+            document.querySelector('[name="pass2"]').setAttribute('readonly',true);
+        }
+    }
+    //checking if the password and confirm password are true
+    function validateCnfrmPass(){
+        let passvalue= document.querySelector('[name="pass1"]').value;
+        let cnfpassvalue= document.querySelector('[name="pass2"]').value;
+        if(passvalue==cnfpassvalue && passvalue!= ''){
+            number.style.display='none';
+            lower.style.display='none';
+            upper.style.display='none';
+            special_char.style.display='none';
+            nospace.style.display='none';
+            len.style.display='none';
+            error_heading.style.display = 'none';
+            boolean_flag = true;
+            document.getElementById('submit_btn').style.left = '50%';
+            document.getElementById('submit_btn').style.color = 'blue';
+        }
+        else{
+            number.style.display='block';
+            lower.style.display='block';
+            upper.style.display='block';
+            special_char.style.display='block';
+            nospace.style.display='block';
+            len.style.display='block';
+            error_heading.style.display = 'block';
+            boolean_flag = false;
+            document.getElementById('submit_btn').style.color = 'red';
+        }
+    }
+    function animation(){
+        var val = document.querySelector('[id="submit_btn"]');
+        if(boolean_flag){
+            val.style.left = '50%';
+            val.style.color = 'blue';
+        }
+        else{
+            if(val.style.left == '50%' || val.style.left == '40%'){
+                val.style.left = '60%';
+            }
+            else{
+                val.style.left = '40%';
+            }
+            val.style.color = 'red';
+        }
+    }
+</script>
+</html>

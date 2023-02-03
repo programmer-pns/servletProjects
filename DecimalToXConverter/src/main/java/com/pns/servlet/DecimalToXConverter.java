@@ -37,6 +37,6 @@ public class DecimalToXConverter extends HttpServlet{
 	}
 	public void getHexaDecimal(int num) {
 				
-		pw.println("<h1 style='color:green'>The HEXA-DECIMAL is " + str.reverse() +"</h1>");
+		pw.println("<h1 style='color:green'>The HEXA-DECIMAL is " +"</h1>");
 	}
 }
