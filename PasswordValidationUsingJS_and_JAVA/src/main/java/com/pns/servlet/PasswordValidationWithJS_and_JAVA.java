@@ -63,7 +63,7 @@ public class PasswordValidationWithJS_and_JAVA extends HttpServlet {
 				errorList.add("Password should contain at least one special character");
 			}
 			//matching password with confirm password
-			if(pass != cnfpass) {
+			if(!pass.equals(cnfpass)) {
 				errorList.add("Password should match with confirm password");
 			}
 			if(errorList.isEmpty()) {
