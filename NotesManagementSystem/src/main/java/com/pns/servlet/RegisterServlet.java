@@ -1,119 +1,91 @@
 package com.pns.servlet;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.pns.javabean.NewUserData;
+import com.pns.trials.ClassA;
 
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/registerurl")
+@WebServlet("/servletregisterurl")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String INSERT_QUERY = "INSERT INTO NOTEBOOK_USERS VALUES (NOTEBOOK_USERS_SEQ.NEXTVAL,?,?,?)";
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//Getting the data from html component
-		String name = req.getParameter("username");	
-		String email = req.getParameter("email");
-		String password = req.getParameter("password2");
-		//Getting the PrintWriter
-		PrintWriter pw = res.getWriter();
-		res.setContentType("text/html");
-		
-		//Form validation logic
-		if(name==null || name==" ") {
-			pw.print("<h1 style='color: red'>Name cannot be empty</h1>");
+		NewUserData nud = null;
+		String name=null,pass=null,email=null;
+		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("P:/NBMS/Objects/beanobject1.ser"));){
+			nud = (NewUserData)ois.readObject();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		else {
-			if(email==null || email==" ") {
-				pw.print("<h1 style='color: red'>email cannot be empty</h1>");
-			}
-			else {
-				if(password==null || password==" ") {
-					pw.print("<h1 style='color: red'>Password cannot be empty</h1>");
-				}
-				else {
-					//The logic to store data
-					//Getting the ServletContext object
-					ServletContext sc = getServletContext();
-					//Getting connections to Database
-					try {
-						Class.forName(sc.getInitParameter("driverclass"));
-					}catch(ClassNotFoundException cnfe){
-						cnfe.printStackTrace();
-						pw.print("<h1 style='color: red'>Internal Error Occured try again</h1>");
-						return;
+		if(nud!=null) {
+			name = nud.getFullname();
+			email = nud.getEmail();
+			pass = nud.getPassword();
+		}else {
+			System.out.println("Nud is null");
+			return;
+		}
+		ServletContext sc = getServletContext();
+		//performing jdbc connections
+		int result = 0;
+		try {
+			Class.forName(sc.getInitParameter("driverclass"));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try(Connection conn = DriverManager.getConnection(sc.getInitParameter("url"),sc.getInitParameter("dbuser"),sc.getInitParameter("dbpwd"));){
+			if(conn!=null) {
+				try(PreparedStatement ps = conn.prepareStatement(INSERT_QUERY);){
+					if(ps!=null) {
+						ps.setString(1, name);
+						ps.setString(2, email);
+						ps.setString(3, pass);
+						result = ps.executeUpdate();
 					}
-					Connection conn = null;
-					PreparedStatement ps=null;
-					try {
-						conn = DriverManager.getConnection(sc.getInitParameter("url"),sc.getInitParameter("dbuser"),sc.getInitParameter("dbpwd"));
-						try {
-							ps = conn.prepareStatement(INSERT_QUERY);
-							ps.setString(1, name);
-							ps.setString(2, email);
-							ps.setString(3, password);
-							int result = ps.executeUpdate();
-							if(result==1) {
-								pw.print("<h1 style='color: green'>User Registered successfully</h1>");
-								HttpSession ses = req.getSession();
-								ses.setAttribute("username", email);
-								ses.setAttribute("password", password);
-								ses.setAttribute("flag", "true");
-								pw.print("<a href='loginurl'>Log In to your account!</a><br>");
-								pw.print("<a href='index.html'>Home</a>");
-								//forwarding to logged in page with the user id and password
-//								pw.print("<h1 style='color: green'>Redirecting to login....</h1>");
-//								res.sendRedirect("http://localhost:2020/NotesManagementSystem/loginurl");	
-							}else {
-								pw.print("<h1 style='color: red'>Some Error Occured try again</h1>");
-							}
-						}
-						catch(SQLException se){
-							//constraint violation checks
-							if(se.getErrorCode()==00001) {
-								pw.print("<h1 style='color: red'>Email is already taken.Please choose another email</h1>");
-							}
-							pw.print("<h1 style='color: red'>Error while inserting the data. try again</h1>");
-							se.printStackTrace();
-						}
-					}catch(SQLException se) {
-						pw.print("<h1 style='color: red'>Internal Error Occured try again</h1>");
-						se.printStackTrace();
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-					finally {
-						//closing the connections
-						try {
-							ps.close();//prepared statement closed
-						} catch (SQLException se) {
-							se.printStackTrace();
-						}
-						try {
-							conn.close();//connection closed
-						} catch (SQLException se) {
-							se.printStackTrace();
-						}
-						pw.close();//print writer closed
-					}
+				}catch(Exception e) {
+					e.getMessage();
 				}
 			}
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		
+		if(result == 1) {
+			req.setAttribute("userid", email);
+			req.setAttribute("userpass", pass);
+			PrintWriter pw = res.getWriter();
+			pw.print("<p style='color: green;text-align:center;font-size: 30px;'>");
+			pw.print("Congratulations "+name+"! You are succefully registered with us.");
+			pw.print("</p>");
+			pw.print("<a href='loginjspurl' style='text-decoration: none;text-align: center;font-size: 2rem;font-family:cursive;'>Click Here to Login</a>");
+		}else {
+			//call error page
+//			RequestDispatcher rd = req.getRequestDispatcher("registerurl");
+//			rd.forward(req, res);
+		}
 	}
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doGet(req, res);

@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendingMailAPP {
-	public boolean send(String to,String from,String subject,String text){
+	public boolean send(String to,String subject,String text){
 		boolean flag = false;
 		String username = "npriyabrata120";
 		String password = "yfwwbrycojtdnnne";
@@ -30,7 +30,7 @@ public class SendingMailAPP {
 		});
 		try {
 			Message m = new MimeMessage(s);
-			m.setFrom(new InternetAddress(from));
+//			m.setFrom(new InternetAddress(from));//no need as we can directly send from username
 			m.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			m.setSubject(subject);
 			m.setText(text);

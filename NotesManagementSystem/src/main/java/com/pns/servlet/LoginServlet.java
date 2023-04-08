@@ -19,84 +19,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/loginurl")
+@WebServlet("/servletloginurl")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String LOGIN_QUERY = "SELECT USERNAME FROM NOTEBOOK_USERS WHERE EMAIL=? AND PASSWORD=?";
       
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//fetching the parameters;
-		HttpSession ses= req.getSession();
-		if(ses.getAttribute("flag")==null) {
-			String username = req.getParameter("username");
-			String password = req.getParameter("password");
-			//Getting the printwriter
-			PrintWriter pw = res.getWriter();
-			res.setContentType("text/html");
-			if(username==null || username==" ") {
-				pw.print("<h1 style='color:red'>Username cannot be empty</h1>");
-			}else if(password == null || password == " ") {
-				pw.print("<h1 style='color:red'>Password cannot be empty</h1>");
-			}else {
-				ServletContext sc = getServletContext();
-				//Getting the connection to database
-				try {
-					Class.forName(sc.getInitParameter("driverclass"));
-				} catch (ClassNotFoundException cnfe) {
-					cnfe.printStackTrace();
-					return;
-				}
-				Connection conn = null;
-				PreparedStatement ps=null;
-				ResultSet rs = null;
-				try {
-					conn = DriverManager.getConnection(sc.getInitParameter("url"),sc.getInitParameter("dbuser"),sc.getInitParameter("dbpwd"));
-					try {
-						ps = conn.prepareStatement(LOGIN_QUERY);
-						ps.setString(1, username);
-						ps.setString(2, password);
-						rs = ps.executeQuery();
-						if(rs!=null) {
-							if(rs.next())
-								pw.print("<h1 style='color: green'>Welcome Back Dear! "+rs.getString(1)+"</h1>");
-							//home hyperlink
-							pw.print("<a href='index.html'>Home</a>");						
-						}else {
-							pw.print("<h1 style='color: red'>No user found please check register</h1>");
-							//home hyperlink
-							pw.print("<a href='index.html'>Home</a>");	
-						}
-					}
-					catch(SQLException se){
-						pw.print("<h1 style='color: red'>Error. try again</h1>");
-						se.printStackTrace();
-					}
-				}catch(SQLException se) {
-					pw.print("<h1 style='color: red'>Internal Error Occured try again</h1>");
-					se.printStackTrace();
-				}catch (Exception e) {
-					e.printStackTrace();
-				}
-				finally {
-					//closing the connections
-					try {
-						ps.close();//prepared statement closed
-					} catch (SQLException se) {
-						se.printStackTrace();
-					}
-					try {
-						conn.close();//connection closed
-					} catch (SQLException se) {
-						se.printStackTrace();
-					}
-					pw.close();//print writer closed
-				}
-			}
-		}
-		else {
-			ses.setAttribute("flag", null);
-			String username = (String)ses.getAttribute("username");
-			String password = (String)ses.getAttribute("password");
+			String username = req.getParameter("email");
+			String password = req.getParameter("pass");
 			//Getting the printwriter
 			PrintWriter pw = res.getWriter();
 			res.setContentType("text/html");
@@ -122,11 +52,11 @@ public class LoginServlet extends HttpServlet {
 							if(rs.next())
 								pw.print("<h1 style='color: green'>Welcome to Notebooks Dear! "+rs.getString(1)+"</h1>");
 							//home hyperlink
-							pw.print("<a href='index.html'>Home</a>");						
+							pw.print("<a href='servletloginurl'>Home</a>");						
 						}else {
 							pw.print("<h1 style='color: red'>No user found please check credentials</h1>");
 							//home hyperlink
-							pw.print("<a href='index.html'>Home</a>");	
+							pw.print("<a href='servletloginurl'>Home</a>");	
 						}
 					}
 					catch(SQLException se){
@@ -153,7 +83,6 @@ public class LoginServlet extends HttpServlet {
 					}
 					pw.close();//print writer closed
 				}
-			}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

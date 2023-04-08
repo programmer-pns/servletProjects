@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>homeFile</servlet-name>
+		<jsp-file>/printDataJsp.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>homeFile</servlet-name>
+		<url-pattern>/printdataurl</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>responsejsp</servlet-name>
+		<jsp-file>/responseJsp.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>responsejsp</servlet-name>
+		<url-pattern>/responsejspurl</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class OtpCheckServlet
  */
-@WebServlet("/otpcheckurl")
+@WebServlet
 public class OtpCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -34,7 +34,6 @@ public class OtpCheckServlet extends HttpServlet {
 			pw.print("<input type='number' name='otp'>");
 			pw.print("<input type='submit' value='Verify'>");
 			pw.print("</form>");
-			System.out.println(sentotp);
 		}
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

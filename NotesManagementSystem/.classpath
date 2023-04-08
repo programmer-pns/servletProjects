@@ -13,7 +13,9 @@
 	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/Servlet/02-Servlets _Notes/.jar files/uploadbean1.9/WEB-INF/lib/fileupload.jar"/>
 	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/Servlet/02-Servlets _Notes/.jar files/uploadbean1.9/WEB-INF/lib/struts.jar"/>
 	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/Servlet/02-Servlets _Notes/.jar files/uploadbean1.9/WEB-INF/lib/uploadbean.jar"/>
-	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/JDBC/.jar files/commons-io-2.11.0.jar"/>
-	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/JDBC/.jar files/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/JDBC/.jar_files/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Study/Naresh IT/Advance Java/JDBC/.jar_files/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="P:/Tomcat9.x/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="P:/Tomcat9.x/lib/javax.mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

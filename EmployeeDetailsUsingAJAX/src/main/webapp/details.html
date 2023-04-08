@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+</head>
+<body>
+    <div class="main">
+        <select name="" id="" onchange="display()">
+            <option value="name[0]">name[0]</option>
+        </select>
+        <table border="0" align="center">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    function display(str) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState==4 && this.status==200) {
+                if(str=="o1")
+                    document.getElementById("demo").innerHTML = this.responseText;
+                else
+                    document.getElementById("demo").innerHTML = "";
+            }
+        };
+        xmlhttp.open("get","getEmployeeDetailsUrl",true);
+        xmlhttp.send();
+    }
+</script>
+</html>
