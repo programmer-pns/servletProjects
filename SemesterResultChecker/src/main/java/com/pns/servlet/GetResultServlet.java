@@ -26,6 +26,7 @@ public class GetResultServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String redgno="";
 		redgno = (String)req.getParameter("redgno");
+		redgno = redgno.trim();
 		if(redgno.length()!=10) {
 			//PRINT ERROR MESSAGE WITH ERROR CODE LENGTH OF THE REDGNO IS LESS
 			System.out.println("lesslength");
@@ -37,6 +38,7 @@ public class GetResultServlet extends HttpServlet {
 				roll_no = Long.parseLong(redgno);
 			}catch(NumberFormatException nfe) {
 				//PRINT ERROR REDGNO SHOULD BE A NUMBER
+				System.out.println("NAN");
 			}
 			if(roll_no!=0) {
 				//get servlet context object
@@ -80,9 +82,9 @@ public class GetResultServlet extends HttpServlet {
 								boolean found = rs.next();
 								req.setAttribute("foundData", found);
 								if(found) {
+									System.out.println("found data");
 									BeanClass beanobj = new BeanClass();
-//									System.out.println("valid");
-									beanobj.setRollno(Integer.parseInt(rs.getString("ROLL_NO")));
+									beanobj.setRollno(Long.parseLong(rs.getString("ROLL_NO")));
 									beanobj.setName(rs.getString("NAME"));
 									String grades[] = {rs.getString("DM"),rs.getString("DS"),rs.getString("DBE"),rs.getString("CSA"),rs.getString("OS"),rs.getString("DSLAB"),rs.getString("DBELAB"),rs.getString("OSLAB")};
 									beanobj.setGrades(grades);
@@ -92,12 +94,16 @@ public class GetResultServlet extends HttpServlet {
 									req.setAttribute("OBJECT", beanobj);
 									boolean sentMail = new CreateGradeSheetPDF().sendMail(beanobj);
 									req.setAttribute("sentMail", sentMail);
+									RequestDispatcher rd = req.getRequestDispatcher("/printdataurl");
+									rd.forward(req, res);
+								}else {
+									System.out.println("Not found");
 								}
-								RequestDispatcher rd = req.getRequestDispatcher("/printdataurl");
-								rd.forward(req, res);
 							} catch (SQLException e) {
 								e.printStackTrace();
 							}
+						}else {
+							System.out.println("RS is null");
 						}
 					}
 				}

@@ -15,8 +15,8 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 public class CreateGradeSheetPDF {
 	public boolean sendMail(BeanClass beanobj) {
 		boolean sentMail = true;
-		String filepath = "P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\javaWritten.pdf";
-		String imagePath = "P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\Logo_vssut.png";
+		String filepath = "P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\studentData";
+		String imagePath = filepath+"\\Logo_vssut.png";
 		PDDocument pdd = new PDDocument();
 		PDPage page = new PDPage();
 		
@@ -294,18 +294,18 @@ public class CreateGradeSheetPDF {
 			
 			//closing the stream and saving the document
 			pdpcs.close();
-			pdd.save(filepath);			
+			pdd.save(filepath+"\\javaWritten.pdf");			
 			
 			//adding watermark
 			HashMap<Integer, String> overlayGuide = new HashMap<Integer, String>();
 	        for(int i=0; i<pdd.getNumberOfPages(); i++){
-	            overlayGuide.put(i+1, "P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\vssut_logo_watermark.pdf");
+	            overlayGuide.put(i+1, filepath+"\\vssut_logo_watermark.pdf");
 	        }
 	        Overlay overlay = new Overlay();
 	        overlay.setInputPDF(pdd);
 	        overlay.setOverlayPosition(Overlay.Position.BACKGROUND);
 	        overlay.overlay(overlayGuide);
-	        pdd.save(new File("P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\javaWritten.pdf"));
+	        pdd.save(new File(filepath+"\\javaWritten.pdf"));
 	        pdd.close();
 		} catch (IOException e) {
 			sentMail = false;

@@ -19,7 +19,7 @@ public class SendGradeSheetOnMail {
 	public boolean send(String to, String name){
 		String subject = "Grade Sheet of 1st Semester";
 		String text = "<h1>Here is your grade sheet---->"+name+"</h1>";
-		File gradeSheet = new File("P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\javaWritten.pdf");
+		File gradeSheet = new File("P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\studentData"+"\\javaWritten.pdf");
 		boolean flag = false;
 		String username = "npriyabrata120";
 		String password = "yfwwbrycojtdnnne";

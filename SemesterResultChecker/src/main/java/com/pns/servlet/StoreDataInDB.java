@@ -20,13 +20,13 @@ public class StoreDataInDB {
 
 	private void createBeanObjects() {
 		FileInputStream fis = null,fis2=null;
-		BeanClass[] beanobj = new BeanClass[30];
+		BeanClass[] beanobj = new BeanClass[68];
 		
-		for(int i = 0;i<30;i++)
+		for(int i = 0;i<68;i++)
 			beanobj[i] = new BeanClass();
 		try {
-			fis = new FileInputStream("C:\\Users\\npriy\\OneDrive\\Desktop\\StudentData.TXT");
-			fis2 = new FileInputStream("C:\\Users\\npriy\\OneDrive\\Desktop\\StudentName.TXT");
+			fis = new FileInputStream("P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\studentData\\StudentData.TXT");
+			fis2 = new FileInputStream("P:\\Eclipse-Workspaces\\servlet-workspace-eclipse\\SemesterResultChecker\\src\\main\\webapp\\studentData\\StudentName.TXT");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,10 +40,10 @@ public class StoreDataInDB {
 			try {
 				while((line=br.readLine())!=null  && (name=br2.readLine())!=null) {
 					String data[] = line.split(" ");
-					int p = 1;
+					int p = 0;
 					//store the data from array to the object array
 					
-					beanobj[i].setRollno(Integer.parseInt(data[p++]));
+					beanobj[i].setRollno(Long.parseLong(data[p++]));
 					beanobj[i].setName(name);
 					String grades[] = new String[8];
 					for(int j=0; j<8;j++)
@@ -59,7 +59,7 @@ public class StoreDataInDB {
 				e.printStackTrace();
 			}
 			establishConnection();
-			if(beanobj!=null && beanobj.length==30)
+			if(beanobj!=null)
 				storeData(beanobj);
 		}
 	}
@@ -78,8 +78,9 @@ public class StoreDataInDB {
 		try{
 			conn = DriverManager.getConnection(url,dbuser,dbpass);
 		}catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Line81");
 		}
+		System.out.println("Connection established");
 	}
 	private void storeData(BeanClass beanobj[]) {
 		String query = "INSERT INTO STUDENTs_RESULT(ROLL_NO,NAME,DM,DS,DBE,CSA,OS,DSLAB,DBELAB,OSLAB,SGPA,CGPA) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";//name will be set manually
@@ -98,8 +99,7 @@ public class StoreDataInDB {
 				ps.setFloat(j, bcobj.getCgpa());
 				ps.execute();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(bcobj.getName());
 			}
 		}
 		if(conn!=null) {
